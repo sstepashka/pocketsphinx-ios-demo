@@ -36,7 +36,7 @@ do
 	HOST_TYPE="${ARCH}-apple-darwin"
 	if [ "${ARCH}" == "arm64" ]; then
         # Fix unknown type for arm64 cpu (which is aarch64)
-	    HOST_TYPE="aarch64-apple-darwin"
+	    HOST_TYPE="arm-apple-darwin"
 	fi
 
 	export DEVELOPER=`xcode-select --print-path`
@@ -47,6 +47,11 @@ do
 	export CFLAGS="-O3 ${IOS_CFLAGS} -isysroot ${SDKROOT}"
 	export LDFLAGS="${IOS_CFLAGS} -isysroot ${SDKROOT}"
 	export CPPFLAGS="${CFLAGS}"
+	
+	if [ "${ARCH}" == "arm64" ]; then
+		export CFLAGS="${CFLAGS} -arch arm64"
+		export LDFLAGS="${LDFLAGS} -arch arm64"
+	fi
 
 	$CWD/configure \
 	    --host="${HOST_TYPE}" \
