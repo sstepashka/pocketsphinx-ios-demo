@@ -49,8 +49,8 @@ do
 	export CPPFLAGS="${CFLAGS}"
 	
 	if [ "${ARCH}" == "arm64" ]; then
-		export CFLAGS="${CFLAGS} -arch arm64"
-		export LDFLAGS="${LDFLAGS} -arch arm64"
+	    export CFLAGS="${CFLAGS} -arch arm64"
+            export LDFLAGS="${LDFLAGS} -arch arm64"
 	fi
 
 	$CWD/configure \
